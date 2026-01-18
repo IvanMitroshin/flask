@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Блог{% endblock %}
+
+{% block content %}
+    <h1>Последние посты</h1>
+
+    {% if posts.items %}
+        <div class="posts-grid">
+            {% for post in posts.items %}
+                <div class="post-card">
+                    <h3 class="post-title">
+                        <a href="{{ url_for('view_post', post_id=post.id) }}">
+                            {{ post.title }}
+                        </a>
+                    </h3>
+                    <div class="post-meta">
+                        Автор: {{ post.author.username }} |
+                        {{ post.created_at.strftime('%d.%m.%Y') }}
+                    </div>
+                    <div class="post-content preview">
+                        {{ post.content|truncate(200) }}
+                    </div>
+                    <a href="{{ url_for('view_post', post_id=post.id) }}" class="btn">Далее</a>
+
+                    {% if session.user_id == post.user_id %}
+                        <div style="margin-top: 10px;">
+                            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-small">Редактировать</a>
+                            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-small btn-danger" onclick="return confirm('Удалить пост?')">Удалить</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if posts.pages > 1 %}
+            <ul class="pagination">
+                {% if posts.has_prev %}
+                    <li><a href="{{ url_for('home', page=posts.prev_num) }}">« Назад</a></li>
+                {% endif %}
+
+                {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                    {% if page_num %}
+                        <li class="{% if page_num == posts.page %}active{% endif %}">
+                            <a href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                    {% else %}
+                        <li><span>...</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                    <li><a href="{{ url_for('home', page=posts.next_num) }}">Вперед »</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% else %}
+        <p>Нет постов.</p>
+        {% if session.user_id %}
+            <a href="{{ url_for('new_post') }}" class="btn">Создать пост</a>
+        {% else %}
+            <p><a href="{{ url_for('login') }}">Войдите</a>, чтобы создать пост.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация - Блог{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Регистрация</h1>
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="form-group">
+                <input type="text" name="username" class="form-input" required
+                       placeholder="Имя пользователя">
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" class="form-input" required
+                       placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" class="form-input" required
+                       placeholder="Пароль">
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="confirm_password" class="form-input" required
+                       placeholder="Подтвердите пароль">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </div>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('login') }}">Войти</a>
+        </p>
+    </div>
+{% endblock %}
