@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+
+{% block title %}Дневник - Блог{% endblock %}
+
+{% block content %}
+    <h2>Дневник программиста</h2>
+
+    <div class="form-container">
+        <h3>Новая запись:</h3>
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" name="title" placeholder="Заголовок" required class="form-input">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="subtitle" placeholder="Подзаголовок" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <textarea name="text" placeholder="Текст записи" rows="4" required class="form-input"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Добавить</button>
+        </form>
+    </div>
+
+    <div class="notes-container">
+        <h3>Записи ({{ notes|length }}):</h3>
+
+        {% if notes %}
+            {% for note in notes %}
+                <div class="note">
+                    <strong>{{ note.title }}</strong>
+
+
+                    <br><em>{{ note.subtitle or "Без подзаголовка" }}</em>
+
+                    <p>{{ note.text }}</p>
+
+                </div>
+            {% endfor %}
+{% else %}
+    <p>Нет записей</p>
+{% endif %}
+    </div>
+{% endblock %}
