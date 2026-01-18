@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Приложение-блог</h1>
+        <p>Приложение-блог о своих достижениях и навыках</p>
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Логотип">
+
+        <h2>Дисциплины</h2>
+
+        <table>
+
+            <tr>
+                <th>Основы Python</th>
+                <th>Git</th>
+                <th>Linux</th>
+                <th>Алгоритмы и структуры данных</th>
+                <th>Базы данных</th>
+                <th>Продвинутый Python</th>
+                <th>Flask</th>
+                <th>Django</th>
+            </tr>
+
+            <tr>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+
+            <tr>
+                <td>97%</td>
+                <td>97%</td>
+                <td>99%</td>
+                <td>97%</td>
+                <td>98%</td>
+                <td>98%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+
+            <tr>
+                <td>Пройдено</td>
+                <td>Пройдено</td>
+                <td>Пройдено</td>
+                <td>Пройдено</td>
+                <td>Пройдено</td>
+                <td>Пройдено</td>
+                <td>В процессе</td>
+                <td>Еще не начал</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
