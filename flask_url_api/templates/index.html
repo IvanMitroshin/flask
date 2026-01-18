@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Блог{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Приложение-блог</h1>
+
+        <div style="margin: 20px 0;">
+            <a href="{{ url_for('main') }}">Главная</a> |
+            <a href="{{ url_for('notes') }}">Дневник</a> |
+            <a href="{{ url_for('logout') }}" class="btn-logout">Выйти</a>
+        </div>
+
+        {% block content %}
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Логотип">
+
+            <h2>Дисциплины</h2>
+            <table>
+                <tr>
+                    <th>Основы Python</th>
+                    <th>Git</th>
+                    <th>Linux</th>
+                    <th>Алгоритмы</th>
+                    <th>Базы данных</th>
+                    <th>Продвинутый Python</th>
+                    <th>Flask</th>
+                    <th>Django</th>
+                </tr>
+                <tr>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>80%</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>97%</td>
+                    <td>97%</td>
+                    <td>99%</td>
+                    <td>97%</td>
+                    <td>98%</td>
+                    <td>98%</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>Пройдено</td>
+                    <td>Пройдено</td>
+                    <td>Пройдено</td>
+                    <td>Пройдено</td>
+                    <td>Пройдено</td>
+                    <td>Пройдено</td>
+                    <td>В процессе</td>
+                    <td>Еще не начал</td>
+                </tr>
+            </table>
+        {% endblock %}
+    </div>
+</body>
+</html>
